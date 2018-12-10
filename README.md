@@ -37,7 +37,7 @@ function YourComponent() {
 }
 ```
 
-See [./example](https://github.com/use-hooks/react-hooks-axios/tree/master/example) for a full example.
+See `./example` for a full [example](https://use-hooks.github.io/react-hooks-axios/).
 
 ## License
 

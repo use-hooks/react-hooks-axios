@@ -28,6 +28,7 @@ export default function App() {
   ];
   return (
     <div>
+      <h2>DEMO of <span style={{ color: '#F44336' }}>@use-hooks/axios</span></h2>
       {options.map(item => (
         <div key={item.gender}>
           <input
