@@ -9,6 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server --progress --color --config ./webpack.config.dev.js",
     "build": "webpack --config ./webpack.config.prod.js",
+    "example": "webpack --config ./webpack.config.example.js",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "prepublishOnly": "npm run build"

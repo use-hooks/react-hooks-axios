@@ -2,6 +2,7 @@
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
+[![Build Status][travis-image]][travis-url]
 
 Custom React Hooks for [Axios.js](https://github.com/axios/axios).
 
@@ -48,3 +49,5 @@ MIT
  [npm-url]: https://npmjs.org/package/@use-hooks/axios
  [download-image]: https://img.shields.io/npm/dm/@use-hooks/axios.svg?style=flat-square
  [download-url]: https://npmjs.org/package/@use-hooks/axios
+ [travis-url]: https://travis-ci.org/use-hooks/react-hooks-axios
+ [travis-image]: https://img.shields.io/travis/use-hooks/react-hooks-axios.svg?style=flat-square
