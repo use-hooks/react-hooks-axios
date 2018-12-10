@@ -8,7 +8,7 @@ Custom React Hooks for [Axios.js](https://github.com/axios/axios).
 
 ## Usage
 
->The Hooks isn't stable, the stable release will landing on [Q1 of 2019](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html). Make sure that you install the correct version of `react(>= v16.7.0-alpha)` and `react-dom(>= v16.7.0-alpha)`.
+>The Hooks isn't stable, the stable version will be available on [Q1 of 2019](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html). Make sure that you have installed the correct version of `react(>= v16.7.0-alpha)` and `react-dom(>= v16.7.0-alpha)`.
 
 `npm i @use-hooks/axios -S`
 
