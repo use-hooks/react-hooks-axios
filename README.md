@@ -33,7 +33,7 @@ function YourComponent() {
 }
 ```
 
-See `./example` for a full example.
+See [./example](https://github.com/use-hooks/react-hooks-axios/tree/master/example) for a full example.
 
 ## License
 
