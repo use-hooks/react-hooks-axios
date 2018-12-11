@@ -24,6 +24,33 @@ npm install --save @use-hooks/axios
 yarn add @use-hooks/axios
 ```
 
+## API
+
+### Params
+
+```js
+/**
+ * Params
+ * @param  {string} url - The request URL
+ * @param  {('GET'|'POST'|'PUT'|'DELETE'|'HEAD'|'OPTIONS'|'PATCH')} method - The request method
+ * @param  {object} [options={}] - The config options of Axios.js (https://goo.gl/UPLqaK)
+ * @param  {object|string} trigger - Trigger conditions for AUTO RUN
+ * @param  {function} [filter=() => true] - ddd
+ * @param  {function} [customHandler=() => {}] - Custom handler
+ */
+```
+
+### Returns
+
+```js
+/**
+ * Returns
+ * @param  {object} response - The response of Axios.js (https://goo.gl/dJ6QcV)
+ * @param  {object} error - HTTP error
+ * @param  {boolean} loading - The loading status
+ * @param  {function} query - MANUAL RUN trigger function
+ */
+```
 
 ## Usage
 
@@ -33,16 +60,13 @@ import useAxios from '@use-hooks/axios';
 
 function MyComponent() {
   const {
-    response, // Ref: https://goo.gl/dJ6QcV
+    response,
     loading,
     error,
-    query, // MANUAL RUN trigger function
+    query,
   } = useAxios({
     url: 'https://randomuser.me/api/',
     method: 'GET',
-    options: {}, // Ref: https://goo.gl/UPLqaK
-    trigger: '', // Trigger conditions for AUTO RUN
-    filter: () => true,
   });
 
   if (loading) return 'loading...';

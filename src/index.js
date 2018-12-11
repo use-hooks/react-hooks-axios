@@ -1,12 +1,28 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+/**
+ * Params
+ * @param  {string} url - The request URL
+ * @param  {('GET'|'POST'|'PUT'|'DELETE'|'HEAD'|'OPTIONS'|'PATCH')} method - The request method
+ * @param  {object} [options={}] - The config options of Axios.js (https://goo.gl/UPLqaK)
+ * @param  {object|string} trigger - Trigger conditions for AUTO RUN
+ * @param  {function} [filter=() => true] - ddd
+ * @param  {function} [customHandler=() => {}] - Custom handler
+ */
+
+/**
+ * Returns
+ * @param  {object} response - The response of Axios.js (https://goo.gl/dJ6QcV)
+ * @param  {object} error - HTTP error
+ * @param  {boolean} loading - The loading status
+ * @param  {function} query - MANUAL RUN trigger function
+ */
+
 export default ({
   url,
   method = 'get',
-  // https://github.com/axios/axios#request-config
-  options,
-  // text / json
+  options = {},
   trigger,
   filter = () => true,
   customHandler = () => {},
