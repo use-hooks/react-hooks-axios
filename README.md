@@ -8,32 +8,40 @@ Custom React Hooks for [Axios.js](https://github.com/axios/axios).
 
 ## Usage
 
->The Hooks isn't stable, the stable version will be available on [Q1 of 2019](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html). Make sure that you have installed the correct version of `react(>= v16.7.0-alpha)` and `react-dom(>= v16.7.0-alpha)`.
+>**Note:** The Hooks isn't stable now, the stable version will be available on [Q1 of 2019](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html).
+>
+>Make sure that you have installed the correct version of `react(>= v16.7.0-alpha)` and `react-dom(>= v16.7.0-alpha)`.
 
 `npm i @use-hooks/axios -S`
 
 ```js
+import React from 'react';
 import useAxios from '@use-hooks/axios';
 
-function YourComponent() {
+function MyComponent() {
   const {
-    // Ref: https://goo.gl/dJ6QcV
-    response,
+    response, // Ref: https://goo.gl/dJ6QcV
     loading,
     error,
-    // MANUAL RUN trigger
-    query,
+    query, // MANUAL RUN trigger function
   } = useAxios({
     url: 'https://randomuser.me/api/',
     method: 'GET',
-    // Ref: https://goo.gl/UPLqaK
-    options: {},
-    // Trigger conditions for AUTO RUN
-    // trigger,
+    options: {}, // Ref: https://goo.gl/UPLqaK
+    trigger: '', // Trigger conditions for AUTO RUN
     filter: () => true,
   });
 
-  // Others...
+  if (loading) return 'loading...';
+  if (error) return error.message || 'error';
+  if (!response || !response.data) return 'No data';
+
+  return (
+    <div>
+      <div>Data: {JSON.stringify(response.data)}</div>
+      <button onClick={query}>Refresh</button>
+    </div>
+  );
 }
 ```
 
