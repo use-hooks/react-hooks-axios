@@ -6,13 +6,26 @@
 
 Custom React Hooks for [Axios.js](https://github.com/axios/axios).
 
-## Usage
+## Install
 
 >**Note:** The Hooks isn't stable now, the stable version will be available on [Q1 of 2019](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html).
 >
 >Make sure that you have installed the correct version of `react(>= v16.7.0-alpha)` and `react-dom(>= v16.7.0-alpha)`.
 
-`npm i @use-hooks/axios -S`
+### npm
+
+```bash
+npm install --save @use-hooks/axios
+```
+
+### yarn
+
+```bash
+yarn add @use-hooks/axios
+```
+
+
+## Usage
 
 ```js
 import React from 'react';
@@ -46,6 +59,14 @@ function MyComponent() {
 ```
 
 See `./example` for a full [example](https://use-hooks.github.io/react-hooks-axios/).
+
+## Have a try
+
+> Node >= v8 LTS
+
+ - Clone the project to local disk
+ - `npm install`
+ - `npm start`
 
 ## License
 
