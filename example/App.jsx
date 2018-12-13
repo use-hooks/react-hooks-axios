@@ -19,13 +19,15 @@ export default function App() {
     filter: () => !!gender,
   });
 
-  const data = (response || {}).data;
+  const { data } = response || {};
 
   const options = [
     { gender: 'female', title: 'Female' },
     { gender: 'male', title: 'Male' },
     { gender: 'unknow', title: 'Unknow' },
   ];
+
+  if (loading) return 'loading...';
   return (
     <div>
       <h2>DEMO of <span style={{ color: '#F44336' }}>@use-hooks/axios</span></h2>
@@ -36,20 +38,16 @@ export default function App() {
             id={item.gender}
             value={item.gender}
             checked={gender === item.gender}
-            onChange={(e) => setGender(e.target.value)}
+            onChange={e => setGender(e.target.value)}
           />
-          <label htmlFor={item.gender}>{item.title}</label>
+          {item.title}
         </div>
       ))}
-      <button onClick={query}>Refresh</button>
+      <button type="button" onClick={query}>Refresh</button>
       <div>
-      {loading ? 'loading...' : (
-        error ? error.message || 'error' : (
-          !data ? 'No Data' : (
-            <textarea cols="100" rows="30">{JSON.stringify(data, '', 2)}</textarea>
-          )
-        )
-      )}
+        {error ? error.message || 'error' : (
+          <textarea cols="100" rows="30" defaultValue={JSON.stringify(data || {}, '', 2)} />
+        )}
       </div>
     </div>
   );

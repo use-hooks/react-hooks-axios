@@ -2,14 +2,14 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = function(env) {
+module.exports = (env) => {
   const isExample = env === 'example';
   const isBuild = env === 'build';
   const isDev = !env;
 
   return {
     mode: isBuild ? 'production' : 'development',
-    entry: isBuild ? './src' : './example/index.js',
+    entry: isBuild ? './src' : './example',
 
     output: {
       path: path.join(__dirname, isExample ? '__site__' : 'dist'),
@@ -35,10 +35,14 @@ module.exports = function(env) {
       },
     } : {},
 
+    resolve: {
+      extensions: ['.js', '.jsx', '.json'],
+    },
+
     module: {
       rules: [
         {
-          test: /\.js?$/,
+          test: /\.jsx?$/,
           exclude: /node_modules/,
           use: ['babel-loader'],
         },
@@ -52,5 +56,5 @@ module.exports = function(env) {
       isDev && new webpack.NamedModulesPlugin(),
       isDev && new webpack.HotModuleReplacementPlugin(),
     ].filter(Boolean),
-  }
+  };
 };

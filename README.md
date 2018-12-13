@@ -4,7 +4,7 @@
 [![npm download][download-image]][download-url]
 [![Build Status][travis-image]][travis-url]
 
-Custom React Hooks for [Axios.js](https://github.com/axios/axios).
+Custom React Hooks for Axios.js
 
 ## Install
 
@@ -55,36 +55,66 @@ yarn add @use-hooks/axios
 ## Usage
 
 ```js
-import React from 'react';
+import React, { useState } from 'react';
+
 import useAxios from '@use-hooks/axios';
 
-function MyComponent() {
+export default function App() {
+  const [gender, setGender] = useState('');
   const {
     response,
     loading,
     error,
     query,
   } = useAxios({
-    url: 'https://randomuser.me/api/',
+    url: `https://randomuser.me/api/${gender === 'unknow' ? 'unknow' : ''}`,
     method: 'GET',
+    options: {
+      params: { gender },
+    },
+    trigger: gender,
+    filter: () => !!gender,
   });
 
-  if (loading) return 'loading...';
-  if (error) return error.message || 'error';
-  if (!response || !response.data) return 'No data';
+  const { data } = response || {};
 
+  const options = [
+    { gender: 'female', title: 'Female' },
+    { gender: 'male', title: 'Male' },
+    { gender: 'unknow', title: 'Unknow' },
+  ];
+
+  if (loading) return 'loading...';
   return (
     <div>
-      <div>Data: {JSON.stringify(response.data)}</div>
-      <button onClick={query}>Refresh</button>
+      <h2>DEMO of <span style={{ color: '#F44336' }}>@use-hooks/axios</span></h2>
+      {options.map(item => (
+        <div key={item.gender}>
+          <input
+            type="radio"
+            id={item.gender}
+            value={item.gender}
+            checked={gender === item.gender}
+            onChange={e => setGender(e.target.value)}
+          />
+          {item.title}
+        </div>
+      ))}
+      <button type="button" onClick={query}>Refresh</button>
+      <div>
+        {error ? error.message || 'error' : (
+          <textarea cols="100" rows="30" defaultValue={JSON.stringify(data || {}, '', 2)} />
+        )}
+      </div>
     </div>
   );
 }
+
 ```
 
-See `./example` for a full [example](https://use-hooks.github.io/react-hooks-axios/).
+[Live Show](https://use-hooks.github.io/react-hooks-axios/)
 
-## Have a try
+## Development
 
 > Node >= v8 LTS
 

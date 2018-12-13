@@ -1,5 +1,7 @@
+const hooks = require('../src/index').default;
+
 describe('hooks test', () => {
   it('should be a function', () => {
-    expect(require('../src/index').default).toEqual(expect.any(Function));
+    expect(hooks).toEqual(expect.any(Function));
   });
 });

@@ -1,18 +1,12 @@
 {
-  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "node": true,
     "jest": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ],
-  "plugins": [
-    "react-hooks"
-  ],
+  "extends": "airbnb",
   "rules": {
-    "react-hooks/rules-of-hooks": "error"
+    "consistent-return": 0,
+    "react/jsx-one-expression-per-line": 0
   }
 }
