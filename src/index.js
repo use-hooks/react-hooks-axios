@@ -7,7 +7,7 @@ import axios from 'axios';
  * @param  {('GET'|'POST'|'PUT'|'DELETE'|'HEAD'|'OPTIONS'|'PATCH')} method - The request method
  * @param  {object} [options={}] - The config options of Axios.js (https://goo.gl/UPLqaK)
  * @param  {object|string} trigger - Trigger conditions for AUTO RUN
- * @param  {function} [filter=() => true] - ddd
+ * @param  {function} [filter=() => true] - A trigger filter function, ONLY trigger when get `true`
  * @param  {function} [customHandler=() => {}] - Custom handler
  */
 
