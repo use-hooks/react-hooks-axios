@@ -70,11 +70,11 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "react": "16.7.0-alpha.2",
-    "react-dom": "16.7.0-alpha.2"
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
   },
   "peerDependencies": {
-    "react": "16.7.0-alpha.2",
-    "react-dom": "16.7.0-alpha.2"
+    "react": "16.8.1",
+    "react-dom": "16.8.1"
   }
 }

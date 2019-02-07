@@ -8,9 +8,7 @@ Custom React Hooks for Axios.js
 
 ## Install
 
->**Note:** The Hooks isn't stable now, the stable version will be available on [Q1 of 2019](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html).
->
->Make sure that you have installed the correct version of `react(v16.7.0-alpha.2)` and `react-dom(v16.7.0-alpha.2)`.
+>**Note:** Make sure that you have installed the correct version of `react(>= v16.8.0)` and `react-dom(>= v16.8.0)`.
 
 ### npm
 
