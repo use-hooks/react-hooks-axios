@@ -72,7 +72,7 @@ export default function App() {
     },
     trigger: gender,
     // or
-    // tigger: { gender }
+    // trigger: { gender }
     filter: () => !!gender, // AUTO RUN only if gender is set
   });
 
