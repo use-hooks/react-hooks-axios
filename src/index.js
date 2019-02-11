@@ -30,7 +30,7 @@ export default ({
 } = {}) => {
   const [results, setResults] = useState({ response: null, error: null, loading: false });
   const [innerTrigger, setInnerTrigger] = useState(0);
-
+  
   let outerTrigger = trigger;
   try {
     outerTrigger = JSON.stringify(trigger);
@@ -44,6 +44,16 @@ export default ({
     if (typeof outerTrigger === 'undefined' && !innerTrigger) return;
     customHandler(null, null);
     setResults({ response: null, error: null, loading: true });
+    if (method.toLowerCase() === "post") {
+        options = {
+          ...options,
+          headers: {
+            ...options.headers,
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        };
+    }
+    console.log(options);
     axios({
       url,
       method,
