@@ -16,7 +16,9 @@ export default function App() {
       params: { gender },
     },
     trigger: gender,
-    filter: () => !!gender,
+    // or
+    // tigger: { gender }
+    filter: () => !!gender, // AUTO RUN only if gender is set
   });
 
   const { data } = response || {};
