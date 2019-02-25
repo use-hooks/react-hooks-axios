@@ -65,7 +65,7 @@ export default function App() {
     error,
     query,
   } = useAxios({
-    url: `https://randomuser.me/api/${gender === 'unknow' ? 'unknow' : ''}`,
+    url: `https://randomuser.me/api/${gender === 'unknown' ? 'unknown' : ''}`,
     method: 'GET',
     options: {
       params: { gender },
