@@ -26,7 +26,7 @@ export default ({
   options = {},
   trigger,
   filter = () => true,
-  customHandler = () => {},
+  customHandler,
 } = {}) => {
   const [results, setResults] = useState({ response: null, error: null, loading: false });
   const [innerTrigger, setInnerTrigger] = useState(0);
@@ -42,17 +42,23 @@ export default ({
     if (!url || !filter()) return;
     // ONLY trigger by query
     if (typeof outerTrigger === 'undefined' && !innerTrigger) return;
-    customHandler(null, null);
+    if (customHandler) {
+      customHandler(null, null);
+    }
     setResults({ response: null, error: null, loading: true });
     axios({
       url,
       method,
       ...options,
     }).then((response) => {
-      customHandler(null, response);
+      if (customHandler) {
+        response = customHandler(null, response);
+      }
       setResults({ response, error: null, loading: false });
     }).catch((error) => {
-      customHandler(error, null);
+      if (customHandler) {
+        error = customHandler(error, null);
+      }
       setResults({ response: null, error, loading: false });
     });
   }, [innerTrigger, outerTrigger]);
