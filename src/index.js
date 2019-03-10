@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import axios from 'axios';
+
+import { initialResponse, responseReducer } from './reducers';
 
 /**
  * Params
@@ -30,7 +32,7 @@ export default ({
   forceDispatchEffect,
   customHandler,
 } = {}) => {
-  const [results, setResults] = useState({ response: null, error: null, loading: false });
+  const [results, dispatch] = useReducer(responseReducer, initialResponse);
   const [innerTrigger, setInnerTrigger] = useState(0);
 
   let outerTrigger = trigger;
@@ -42,28 +44,29 @@ export default ({
 
   const dispatchEffect = forceDispatchEffect || filter || (() => true);
 
+  const handler = (error, response) => {
+    if (customHandler) {
+      customHandler(error, response);
+    }
+  };
+
   useEffect(() => {
     if (!url || !dispatchEffect()) return;
     // ONLY trigger by query
     if (typeof outerTrigger === 'undefined' && !innerTrigger) return;
-    if (customHandler) {
-      customHandler(null, null);
-    }
-    setResults({ response: null, error: null, loading: true });
+
+    handler(null, null);
+    dispatch({ type: 'init' });
     axios({
       url,
       method,
       ...options,
     }).then((response) => {
-      if (customHandler) {
-        customHandler(null, response);
-      }
-      setResults({ response, error: null, loading: false });
+      handler(null, response);
+      dispatch({ type: 'success', payload: response });
     }).catch((error) => {
-      if (customHandler) {
-        customHandler(error, null);
-      }
-      setResults({ response: null, error, loading: false });
+      handler(error, null);
+      dispatch({ type: 'fail', payload: error });
     });
   }, [innerTrigger, outerTrigger]);
 
