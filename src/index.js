@@ -22,6 +22,8 @@ import { initialResponse, responseReducer } from './reducers';
  * @param  {function} reFetch - MANUAL RUN trigger function for making a request manually
  */
 
+const { CancelToken } = axios;
+
 export default ({
   url,
   method = 'get',
@@ -57,10 +59,13 @@ export default ({
 
     handler(null, null);
     dispatch({ type: 'init' });
+
+    const source = CancelToken.source();
     axios({
       url,
       method,
       ...options,
+      cancelToken: source.token,
     }).then((response) => {
       handler(null, response);
       dispatch({ type: 'success', payload: response });
@@ -68,6 +73,10 @@ export default ({
       handler(error, null);
       dispatch({ type: 'fail', payload: error });
     });
+
+    return () => {
+      source.cancel();
+    };
   }, [innerTrigger, outerTrigger]);
 
   return {
