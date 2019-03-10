@@ -52,12 +52,12 @@ export default ({
       ...options,
     }).then((response) => {
       if (customHandler) {
-        response = customHandler(null, response);
+        customHandler(null, response);
       }
       setResults({ response, error: null, loading: false });
     }).catch((error) => {
       if (customHandler) {
-        error = customHandler(error, null);
+        customHandler(error, null);
       }
       setResults({ response: null, error, loading: false });
     });
