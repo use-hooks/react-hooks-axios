@@ -81,7 +81,7 @@ export default function App() {
   const options = [
     { gender: 'female', title: 'Female' },
     { gender: 'male', title: 'Male' },
-    { gender: 'unknow', title: 'Unknow' },
+    { gender: 'unknown', title: 'Unknown' },
   ];
 
   if (loading) return 'loading...';
