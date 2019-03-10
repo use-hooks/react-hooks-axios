@@ -65,7 +65,7 @@ export default function App() {
     error,
     query,
   } = useAxios({
-    url: `https://randomuser.me/api/${gender === 'unknown' ? 'unknown' : ''}`,
+    url: `https://randomuser.me/api/${gender === 'unknow' ? 'unknow' : ''}`,
     method: 'GET',
     options: {
       params: { gender },
@@ -81,7 +81,7 @@ export default function App() {
   const options = [
     { gender: 'female', title: 'Female' },
     { gender: 'male', title: 'Male' },
-    { gender: 'unknown', title: 'Unknown' },
+    { gender: 'unknow', title: 'Unknow' },
   ];
 
   if (loading) return 'loading...';

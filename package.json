@@ -3,6 +3,7 @@
   "version": "1.0.7",
   "description": "Custom React Hooks for Axios.js",
   "main": "dist/index.js",
+  "types": "types.d.ts",
   "files": [
     "dist"
   ],
