@@ -33,7 +33,7 @@ yarn add @use-hooks/axios
  * @param  {('GET'|'POST'|'PUT'|'DELETE'|'HEAD'|'OPTIONS'|'PATCH')} method - The request method
  * @param  {object} [options={}] - (optional) The config options of Axios.js (https://goo.gl/UPLqaK)
  * @param  {object|string} trigger - (optional) The conditions for AUTO RUN, refer the concepts of [conditions](https://reactjs.org/docs/hooks-reference.html#conditionally-firing-an-effect) of useEffect, but ONLY support string and plain object. If the value is a constant, it'll trigger ONLY once at the begining
- * @param  {function} [filter=() => true] - (optional) Trigger filter function, only AUTO RUN when get `true`, leave it unset unless you don't want AUTU RUN by all updates of trigger
+ * @param  {function} [forceDispatchEffect=() => true] - (optional) Trigger filter function, only AUTO RUN when get `true`, leave it unset unless you don't want AUTU RUN by all updates of trigger
  * @param  {function} [customHandler=(error, response) => {}] - (optional) Custom handler callback, NOTE: `error` and `response` will be set to `null` before request
  */
 ```
@@ -46,7 +46,7 @@ yarn add @use-hooks/axios
  * @param  {object} response - The response of Axios.js (https://goo.gl/dJ6QcV)
  * @param  {object} error - HTTP error
  * @param  {boolean} loading - The loading status
- * @param  {function} query - MANUAL RUN trigger function for making a request manually
+ * @param  {function} reFetch - MANUAL RUN trigger function for making a request manually
  */
 ```
 
@@ -63,9 +63,9 @@ export default function App() {
     response,
     loading,
     error,
-    query,
+    reFetch,
   } = useAxios({
-    url: `https://randomuser.me/api/${gender === 'unknow' ? 'unknow' : ''}`,
+    url: `https://randomuser.me/api/${gender === 'unknown' ? 'unknown' : ''}`,
     method: 'GET',
     options: {
       params: { gender },
@@ -73,7 +73,7 @@ export default function App() {
     trigger: gender,
     // or
     // tigger: { gender }
-    filter: () => !!gender, // AUTO RUN only if gender is set
+    forceDispatchEffect: () => !!gender, // AUTO RUN only if gender is set
   });
 
   const { data } = response || {};
@@ -100,7 +100,7 @@ export default function App() {
           {item.title}
         </div>
       ))}
-      <button type="button" onClick={query}>Refresh</button>
+      <button type="button" onClick={reFetch}>Refresh</button>
       <div>
         {error ? error.message || 'error' : (
           <textarea cols="100" rows="30" defaultValue={JSON.stringify(data || {}, '', 2)} />

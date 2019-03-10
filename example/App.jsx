@@ -8,9 +8,9 @@ export default function App() {
     response,
     loading,
     error,
-    query,
+    reFetch,
   } = useAxios({
-    url: `https://randomuser.me/api/${gender === 'unknow' ? 'unknow' : ''}`,
+    url: `https://randomuser.me/api/${gender === 'unknown' ? 'unknown' : ''}`,
     method: 'GET',
     options: {
       params: { gender },
@@ -18,7 +18,7 @@ export default function App() {
     trigger: gender,
     // or
     // tigger: { gender }
-    filter: () => !!gender, // AUTO RUN only if gender is set
+    forceDispatchEffect: () => !!gender, // AUTO RUN only if gender is set
   });
 
   const { data } = response || {};
@@ -45,7 +45,7 @@ export default function App() {
           {item.title}
         </div>
       ))}
-      <button type="button" onClick={query}>Refresh</button>
+      <button type="button" onClick={reFetch}>Refresh</button>
       <div>
         {error ? error.message || 'error' : (
           <textarea cols="100" rows="30" defaultValue={JSON.stringify(data || {}, '', 2)} />

@@ -5,7 +5,11 @@ interface IParams {
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'PATCH';
     options?: AxiosRequestConfig;
     trigger?: object | string;
+    /**
+     * @deprecated Alias of `forceDispatchEffect`
+     */
     filter?: () => boolean;
+    forceDispatchEffect?: () => boolean;
     customHandler?: (error: null | Error, response: null | AxiosResponse) => void;
 }
 
@@ -16,7 +20,11 @@ interface IResponseStatus {
 }
 
 interface IReturns extends IResponseStatus {
+    /**
+     * @deprecated Alias of `reFetch`
+     */
     query: () => number;
+    reFetch: () => number;
 }
 
 declare const useAxios: (params: IParams) => IReturns;
