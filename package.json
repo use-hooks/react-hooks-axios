@@ -1,11 +1,12 @@
 {
   "name": "@use-hooks/axios",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Custom React Hooks for Axios.js",
   "main": "dist/index.js",
   "types": "types.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "types.d.ts"
   ],
   "scripts": {
     "test": "jest",
