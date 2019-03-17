@@ -71,7 +71,9 @@ export default ({
       dispatch({ type: 'success', payload: response });
     }).catch((error) => {
       handler(error, null);
-      dispatch({ type: 'fail', payload: error });
+      if (!axios.isCancel(error)) {
+        dispatch({ type: 'fail', payload: error });
+      }
     });
 
     return () => {
