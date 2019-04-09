@@ -5,10 +5,9 @@
     "jest": true
   },
   "extends": "airbnb",
-  "plugins": ["prettier", "react", "react-hooks"],
+  "plugins": ["prettier", "react"],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
     "consistent-return": 0,
     "react/jsx-one-expression-per-line": 0,
     "import/prefer-default-export": 0,
