@@ -1,4 +1,3 @@
-
 export const initialResponse = { response: null, error: null, loading: false };
 
 export function responseReducer(state, action) {
