@@ -2,7 +2,7 @@
 import { useState, useEffect, useReducer } from 'react';
 import axios from 'axios';
 
-import { initialResponse, responseReducer } from './reducers';
+import { initialResponse, responseReducer, actions } from './reducers';
 
 /**
  * Params
@@ -58,7 +58,7 @@ export default ({
     if (typeof outerTrigger === 'undefined' && !innerTrigger) return;
 
     handler(null, null);
-    dispatch({ type: 'init' });
+    dispatch({ type: actions.init });
 
     const source = CancelToken.source();
     axios({
@@ -66,15 +66,17 @@ export default ({
       method,
       ...options,
       cancelToken: source.token,
-    }).then((response) => {
-      handler(null, response);
-      dispatch({ type: 'success', payload: response });
-    }).catch((error) => {
-      handler(error, null);
-      if (!axios.isCancel(error)) {
-        dispatch({ type: 'fail', payload: error });
-      }
-    });
+    })
+      .then((response) => {
+        handler(null, response);
+        dispatch({ type: actions.success, payload: response });
+      })
+      .catch((error) => {
+        handler(error, null);
+        if (!axios.isCancel(error)) {
+          dispatch({ type: actions.fail, payload: error });
+        }
+      });
 
     return () => {
       source.cancel();
@@ -84,7 +86,11 @@ export default ({
   return {
     ...results,
     // @deprecated
-    query: () => { setInnerTrigger(+new Date()); },
-    reFetch: () => { setInnerTrigger(+new Date()); },
+    query: () => {
+      setInnerTrigger(+new Date());
+    },
+    reFetch: () => {
+      setInnerTrigger(+new Date());
+    },
   };
 };
