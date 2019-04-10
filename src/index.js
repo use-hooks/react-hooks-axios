@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { useState, useEffect, useReducer } from 'react';
 import axios from 'axios';
 
@@ -68,11 +67,11 @@ export default ({
       ...options,
       cancelToken: source.token,
     })
-      .then((response) => {
+      .then(response => {
         handler(null, response);
         dispatch({ type: actions.success, payload: response });
       })
-      .catch((error) => {
+      .catch(error => {
         handler(error, null);
         if (!axios.isCancel(error)) {
           dispatch({ type: actions.fail, payload: error });

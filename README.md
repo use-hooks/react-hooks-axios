@@ -59,12 +59,7 @@ import useAxios from '@use-hooks/axios';
 
 export default function App() {
   const [gender, setGender] = useState('');
-  const {
-    response,
-    loading,
-    error,
-    reFetch,
-  } = useAxios({
+  const { response, loading, error, reFetch } = useAxios({
     url: `https://randomuser.me/api/${gender === 'unknown' ? 'unknown' : ''}`,
     method: 'GET',
     options: {
@@ -87,7 +82,10 @@ export default function App() {
   if (loading) return 'loading...';
   return (
     <div>
-      <h2>DEMO of <span style={{ color: '#F44336' }}>@use-hooks/axios</span></h2>
+      <h2>
+        DEMO of
+        <span style={{ color: '#F44336' }}>@use-hooks/axios</span>
+      </h2>
       {options.map(item => (
         <div key={item.gender}>
           <input
@@ -100,10 +98,18 @@ export default function App() {
           {item.title}
         </div>
       ))}
-      <button type="button" onClick={reFetch}>Refresh</button>
+      <button type="button" onClick={reFetch}>
+        Refresh
+      </button>
       <div>
-        {error ? error.message || 'error' : (
-          <textarea cols="100" rows="30" defaultValue={JSON.stringify(data || {}, '', 2)} />
+        {error ? (
+          error.message || 'error'
+        ) : (
+          <textarea
+            cols="100"
+            rows="30"
+            defaultValue={JSON.stringify(data || {}, '', 2)}
+          />
         )}
       </div>
     </div>
