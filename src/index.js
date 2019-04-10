@@ -61,6 +61,7 @@ export default ({
     dispatch({ type: actions.init });
 
     const source = CancelToken.source();
+
     axios({
       url,
       method,
