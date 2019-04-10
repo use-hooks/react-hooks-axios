@@ -2,7 +2,7 @@
 import { useState, useEffect, useReducer } from 'react';
 import axios from 'axios';
 
-import { initialResponse, responseReducer } from './reducers';
+import { initialResponse, responseReducer, actions } from './reducers';
 
 /**
  * Params
@@ -58,7 +58,7 @@ export default ({
     if (typeof outerTrigger === 'undefined' && !innerTrigger) return;
 
     handler(null, null);
-    dispatch({ type: 'init' });
+    dispatch({ type: actions.init });
 
     const source = CancelToken.source();
 
@@ -68,14 +68,14 @@ export default ({
       ...options,
       cancelToken: source.token,
     })
-      .then(response => {
+      .then((response) => {
         handler(null, response);
-        dispatch({ type: 'success', payload: response });
+        dispatch({ type: actions.success, payload: response });
       })
-      .catch(error => {
+      .catch((error) => {
         handler(error, null);
         if (!axios.isCancel(error)) {
-          dispatch({ type: 'fail', payload: error });
+          dispatch({ type: actions.fail, payload: error });
         }
       });
 
