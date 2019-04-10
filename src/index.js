@@ -61,20 +61,23 @@ export default ({
     dispatch({ type: 'init' });
 
     const source = CancelToken.source();
+
     axios({
       url,
       method,
       ...options,
       cancelToken: source.token,
-    }).then((response) => {
-      handler(null, response);
-      dispatch({ type: 'success', payload: response });
-    }).catch((error) => {
-      handler(error, null);
-      if (!axios.isCancel(error)) {
-        dispatch({ type: 'fail', payload: error });
-      }
-    });
+    })
+      .then(response => {
+        handler(null, response);
+        dispatch({ type: 'success', payload: response });
+      })
+      .catch(error => {
+        handler(error, null);
+        if (!axios.isCancel(error)) {
+          dispatch({ type: 'fail', payload: error });
+        }
+      });
 
     return () => {
       source.cancel();
@@ -84,7 +87,11 @@ export default ({
   return {
     ...results,
     // @deprecated
-    query: () => { setInnerTrigger(+new Date()); },
-    reFetch: () => { setInnerTrigger(+new Date()); },
+    query: () => {
+      setInnerTrigger(+new Date());
+    },
+    reFetch: () => {
+      setInnerTrigger(+new Date());
+    },
   };
 };
