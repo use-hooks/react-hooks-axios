@@ -5,7 +5,11 @@
     "jest": true
   },
   "extends": "airbnb",
-  "plugins": ["prettier", "react"],
+  "plugins": [
+    "prettier",
+    "react",
+    "react-hooks"
+  ],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "consistent-return": 0,
