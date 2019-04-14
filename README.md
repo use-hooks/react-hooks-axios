@@ -29,6 +29,7 @@ yarn add @use-hooks/axios
 ```js
 /**
  * Params
+ * @param  {AxiosInstance} axios - (optional) The custom axios instance
  * @param  {string} url - The request URL
  * @param  {('GET'|'POST'|'PUT'|'DELETE'|'HEAD'|'OPTIONS'|'PATCH')} method - The request method
  * @param  {object} [options={}] - (optional) The config options of Axios.js (https://goo.gl/UPLqaK)

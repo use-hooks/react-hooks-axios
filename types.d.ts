@@ -1,6 +1,7 @@
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 
 interface IParams {
+    axios: AxiosInstance;
     url: string;
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'PATCH';
     options?: AxiosRequestConfig;
@@ -29,3 +30,5 @@ interface IReturns extends IResponseStatus {
 
 declare const useAxios: (params: IParams) => IReturns;
 export default useAxios;
+
+export declare const axios: AxiosInstance;

@@ -1,10 +1,11 @@
 import { useState, useEffect, useReducer } from 'react';
-import axios from 'axios';
+import * as defaultAxios from 'axios';
 
 import { initialResponse, responseReducer, actions } from './reducers';
 
 /**
  * Params
+ * @param  {AxiosInstance} axios - (optional) The custom axios instance
  * @param  {string} url - The request URL
  * @param  {('GET'|'POST'|'PUT'|'DELETE'|'HEAD'|'OPTIONS'|'PATCH')} method - The request method
  * @param  {object} [options={}] - (optional) The config options of Axios.js (https://goo.gl/UPLqaK)
@@ -21,9 +22,10 @@ import { initialResponse, responseReducer, actions } from './reducers';
  * @param  {function} reFetch - MANUAL RUN trigger function for making a request manually
  */
 
-const { CancelToken } = axios;
+const { CancelToken } = defaultAxios;
 
 export default ({
+  axios = defaultAxios,
   url,
   method = 'get',
   options = {},
@@ -73,7 +75,7 @@ export default ({
       })
       .catch(error => {
         handler(error, null);
-        if (!axios.isCancel(error)) {
+        if (!defaultAxios.isCancel(error)) {
           dispatch({ type: actions.fail, payload: error });
         }
       });
@@ -94,3 +96,5 @@ export default ({
     },
   };
 };
+
+export const axios = defaultAxios;
