@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = (env) => {
+module.exports = env => {
   const isExample = env === 'example';
   const isBuild = env === 'build';
   const isDev = !env;
@@ -25,15 +25,17 @@ module.exports = (env) => {
       open: true,
     },
 
-    externals: isBuild ? {
-      react: {
-        root: 'React',
-        commonjs2: 'react',
-        commonjs: 'react',
-        amd: 'react',
-        umd: 'react',
-      },
-    } : {},
+    externals: isBuild
+      ? {
+          react: {
+            root: 'React',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react',
+            umd: 'react',
+          },
+        }
+      : {},
 
     resolve: {
       extensions: ['.js', '.jsx', '.json'],
@@ -50,9 +52,10 @@ module.exports = (env) => {
     },
 
     plugins: [
-      !isBuild && new HtmlWebpackPlugin({
-        template: 'example/index.html',
-      }),
+      !isBuild &&
+        new HtmlWebpackPlugin({
+          template: 'example/index.html',
+        }),
       isDev && new webpack.NamedModulesPlugin(),
       isDev && new webpack.HotModuleReplacementPlugin(),
     ].filter(Boolean),
