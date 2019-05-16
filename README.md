@@ -140,4 +140,4 @@ MIT
  [download-image]: https://img.shields.io/npm/dm/@use-hooks/axios.svg?style=flat-square
  [download-url]: https://npmjs.org/package/@use-hooks/axios
  [travis-url]: https://travis-ci.com/use-hooks/react-hooks-axios
- [travis-image]: https://img.shields.io/com/travis/use-hooks/react-hooks-axios.svg?style=flat-square
+ [travis-image]: https://img.shields.io/travis/com/use-hooks/react-hooks-axios.svg?style=flat-square
