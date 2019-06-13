@@ -1,6 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 
-interface IParams {
+export interface IParams {
     axios?: AxiosInstance;
     url: string;
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'PATCH';
@@ -14,13 +14,13 @@ interface IParams {
     customHandler?: (error: null | Error, response: null | AxiosResponse) => void;
 }
 
-interface IResponseStatus {
+export interface IResponseStatus {
     response: null | AxiosResponse;
     error: null | Error;
     loading: boolean;
 }
 
-interface IReturns extends IResponseStatus {
+export interface IReturns extends IResponseStatus {
     /**
      * @deprecated Alias of `reFetch`
      */
