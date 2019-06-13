@@ -1,7 +1,7 @@
 import { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 
 interface IParams {
-    axios: AxiosInstance;
+    axios?: AxiosInstance;
     url: string;
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'PATCH';
     options?: AxiosRequestConfig;
