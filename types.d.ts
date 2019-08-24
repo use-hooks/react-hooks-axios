@@ -1,6 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 
-export interface IParams {
+export interface IParams<T> {
     axios?: AxiosInstance;
     url: string;
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'PATCH';
@@ -11,16 +11,16 @@ export interface IParams {
      */
     filter?: () => boolean;
     forceDispatchEffect?: () => boolean;
-    customHandler?: (error: null | Error, response: null | AxiosResponse) => void;
+    customHandler?: (error: null | Error, response: null | AxiosResponse<T>) => void;
 }
 
-export interface IResponseStatus {
-    response: null | AxiosResponse;
+export interface IResponseStatus<T> {
+    response: null | AxiosResponse<T>;
     error: null | Error;
     loading: boolean;
 }
 
-export interface IReturns extends IResponseStatus {
+export interface IReturns<T> extends IResponseStatus<T> {
     /**
      * @deprecated Alias of `reFetch`
      */
@@ -28,7 +28,7 @@ export interface IReturns extends IResponseStatus {
     reFetch: () => number;
 }
 
-declare const useAxios: (params: IParams) => IReturns;
+declare const useAxios: <T = any>(params: IParams<T>) => IReturns<T>;
 export default useAxios;
 
 export declare const axios: AxiosInstance;
